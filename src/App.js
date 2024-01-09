@@ -4,6 +4,7 @@ import "./App.css";
 import Board from './components/Board.js';
 import ResetButton from './components/ResetButton';
 import Footer from './components/Footer';
+import Header from './components/Header';
 
 
 function Game() {
@@ -23,6 +24,7 @@ function Game() {
 
   return (
     <div className="game">
+      <Header />
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>

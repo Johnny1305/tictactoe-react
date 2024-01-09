@@ -1,0 +1,36 @@
+/* Header.css */
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Josefin+Sans:wght@300&family=Nunito+Sans:opsz@6..12&family=Roboto+Mono:wght@200;300&family=Saira&display=swap');
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 2em;
+    font-family: 'Bungee Spice', sans-serif;
+    color: #fff;
+    margin: 0;
+    animation: swing 5s infinite;
+}
