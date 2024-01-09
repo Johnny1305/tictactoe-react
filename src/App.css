@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+/* Estilos generales para modo oscuro */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a; /* Color de fondo oscuro */
+  color: #f2f2f2; /* Color de texto claro */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Estilos del juego para modo oscuro */
+.game {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #333; /* Color de fondo oscuro */
+  border-radius: 8px;
+  border: 2px solid #f2f2f2; /* Bordes claros */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  color: #f2f2f2; /* Color de texto claro */
+}
+
+/* Estilos del tablero para modo oscuro */
+.board {
+  display: grid;
+  position: 'fixed';
+  grid-template-rows: repeat(3, 100px);
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+}
+
+.board-row {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  border-color: #f2f2f2; /* Bordes claros */
 }
 
-.App-link {
-  color: #61dafb;
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  color: #f2f2f2;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.square:hover {
+  background-color: #555; /* Color de fondo oscuro más claro al pasar el cursor */
+}
+
+.square:active {
+  transform: scale(0.95); /* Reducir ligeramente el tamaño al ser pulsado */
+  transition: transform 0.1s;
+}
+
+/* Estilos del estado del juego para modo oscuro */
+.status {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #f2f2f2; /* Color de texto claro */
+}
+
+/* Estilos para el contenedor de etiqueta e input */
+label{
+  display: block; /* Hace que cada etiqueta con su respectivo input aparezca en una línea separada */
+  margin-bottom: 10px; /* Añade un espacio entre cada etiqueta-input */
+}
+
+/* Estilos para el input de nombre del jugador */
+input[type="text"]{
+  padding: 8px; /* Añade un relleno interno al input */
+  font-size: 16px; /* Tamaño de fuente */
+  border: 1px solid #ccc; /* Añade un borde al input */
+  border-radius: 4px; /* Añade esquinas redondeadas al input */
+  width: 200px; /* Ancho del input */
+  box-sizing: border-box; /* Hace que el ancho incluya el relleno y el borde, sin agregar al ancho total */
 }
