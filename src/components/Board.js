@@ -1,12 +1,15 @@
 // Board.js
 import React, { useState } from 'react';
 import Square from './Square';
+import PlayerNamesModal from './PlayerNamesModal';
 import Swal from 'sweetalert2';
+import ModifyNamesButton from './ModifyNamesButton'; // Importa el nuevo componente
 import "./css/Board.css";
 
 function Board({ xIsNext, squares, onPlay, defaultPlayerXName = 'X', defaultPlayerOName = 'O' }) {
     const [playerXName, setPlayerXName] = useState(defaultPlayerXName);
     const [playerOName, setPlayerOName] = useState(defaultPlayerOName);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     function handlePlayerNameChange(player, newName) {
         if (player === 'X') {
@@ -15,6 +18,30 @@ function Board({ xIsNext, squares, onPlay, defaultPlayerXName = 'X', defaultPlay
             setPlayerOName(newName);
         }
     }
+
+    function openModal() {
+        // Verificar si la partida está en curso y ningún cuadrado está seleccionado
+        if (!calculateWinner(squares) && squares.every(square => !square)) {
+            setIsModalOpen(true);
+        } else if (calculateWinner(squares)) {
+            // Permitir abrir el modal después de que la partida ha finalizado
+            setIsModalOpen(true);
+            // También puedes agregar aquí la lógica para reiniciar el estado de la partida
+            // Ejemplo: setSquares(Array(9).fill(null));
+        } else {
+            // Mostrar mensaje de error si la partida está en curso o algún cuadrado ya está seleccionado
+            Swal.fire('Oops...', `No puedes cambiar los nombres mientras la partida está en curso.`, 'error');
+        }
+    }
+
+    function closeModal() {
+        setIsModalOpen(false);
+    }
+
+    function handleModalSave() {
+        closeModal(); // Cerrar el modal después de guardar los cambios
+    }
+
     function handleClick(i) {
         if (calculateWinner(squares) || squares[i]) {
             return;
@@ -34,32 +61,25 @@ function Board({ xIsNext, squares, onPlay, defaultPlayerXName = 'X', defaultPlay
         let winnerName = winner === 'X' ? playerXName : playerOName;
         Swal.fire('¡Tenemos un ganador!', `¡El jugador ${winnerName} ha ganado!`, 'success');
     } else {
-        status = 'Siguiente Jugador: ' + (xIsNext ? (playerXName !== '' ? playerXName : 'X') : (playerOName !== '' ? playerOName : 'O'));
+        status = (xIsNext ? (playerXName !== '' ? playerXName : 'X') : (playerOName !== '' ? playerOName : 'O'));
     }
 
     return (
         <div>
-            <div className="status">{status}</div>
-            <div>
-                <label>
-                    Nombre del Jugador X:
-                    <input
-                        type="text"
-                        value={playerXName}
-                        onChange={(e) => handlePlayerNameChange('X', e.target.value)}
-                    />
-                </label>
+            <div style={{ display: 'flex', justifyContent: 'center', }}>
+
+                <div className="status">Siguiente Jugador: <br/>{status}</div>
+                <div className="status2"><ModifyNamesButton openModal={openModal} /></div>
             </div>
-            <div>
-                <label>
-                    Nombre del Jugador O:
-                    <input
-                        type="text"
-                        value={playerOName}
-                        onChange={(e) => handlePlayerNameChange('O', e.target.value)}
-                    />
-                </label>
-            </div>
+
+            <PlayerNamesModal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onSave={handleModalSave}
+                playerXName={playerXName}
+                playerOName={playerOName}
+                onPlayerNameChange={handlePlayerNameChange}
+            />
             <div className="board-row">
                 <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
                 <Square value={squares[1]} onSquareClick={() => handleClick(1)} />

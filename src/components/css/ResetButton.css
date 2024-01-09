@@ -1,5 +1,5 @@
 /* Estilos del boton de reinicio de partida */
-.restart-button {
+.restart-button, .modify-button {
     padding: 10px 20px;
     background-color: #2196F3;
     color: white;
@@ -15,7 +15,7 @@
 }
 
 /* Cambio de color al pasar el mouse por encima del botón */
-.restart-button:hover {
+.restart-button:hover, .modify-button:hover {
     background-color: #1a7bca;
     color: white;
 }

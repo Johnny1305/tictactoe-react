@@ -54,11 +54,11 @@ body {
 }
 
 .square:hover {
-  background-color: #555; /* Color de fondo oscuro más claro al pasar el cursor */
+  background-color: #555;
 }
 
 .square:active {
-  transform: scale(0.95); /* Reducir ligeramente el tamaño al ser pulsado */
+  transform: scale(0.95);
   transition: transform 0.1s;
 }
 
@@ -66,21 +66,24 @@ body {
 .status {
   font-size: 1.5em;
   margin-bottom: 10px;
-  color: #f2f2f2; /* Color de texto claro */
+  color: #f2f2f2;
+}
+
+.status2{
+  margin-bottom: 10px;
 }
 
 /* Estilos para el contenedor de etiqueta e input */
 label{
-  display: block; /* Hace que cada etiqueta con su respectivo input aparezca en una línea separada */
-  margin-bottom: 10px; /* Añade un espacio entre cada etiqueta-input */
+  display: block;
+  margin-bottom: 10px;
 }
 
-/* Estilos para el input de nombre del jugador */
 input[type="text"]{
-  padding: 8px; /* Añade un relleno interno al input */
-  font-size: 16px; /* Tamaño de fuente */
-  border: 1px solid #ccc; /* Añade un borde al input */
-  border-radius: 4px; /* Añade esquinas redondeadas al input */
-  width: 200px; /* Ancho del input */
-  box-sizing: border-box; /* Hace que el ancho incluya el relleno y el borde, sin agregar al ancho total */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
 }
