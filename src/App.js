@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import "./App.css";
 import Board from './components/Board.js';
 import ResetButton from './components/ResetButton';
+import Footer from './components/Footer';
 
 
 function Game() {
@@ -29,7 +30,7 @@ function Game() {
         <ol>{/*TODO*/}</ol>
         <ResetButton onReset={resetGame} />
       </div>
-      
+      <Footer />
     </div>
   );
 }
